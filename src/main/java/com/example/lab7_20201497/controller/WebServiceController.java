@@ -52,7 +52,7 @@ public class WebServiceController {
     public List<Users> getAuthorizedList(@RequestParam(value = "resourceId") String idStr) {
         try {
             int resourceId = Integer.parseInt(idStr);
-            return usersRepository.findByAuthorizedResource(resourceId);
+            return usersRepository.findByAuthorizedResource(resourcesRepository.findById(resourceId).get());
         } catch (NumberFormatException e) {
             return null;
         }
